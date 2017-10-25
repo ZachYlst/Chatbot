@@ -20,8 +20,8 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = null;
-		this.shoppingList = null;
+		this.movieList = new ArrayList<String>();
+		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
 		this.questions = null;
@@ -30,18 +30,38 @@ public class Chatbot
 		this.intro = null;
 		this.currentTime = null;
 		this.topics = null;
-		this.verbs = null;
+		this.verbs = new String [4];
 		this.followUps = null;
+		
+		buildVerbs();
+		buildShoppingList();
+		buildMovieList();
 	}
 
+	private void buildVerbs()
+	{
+		verbs[0] = "like";
+		verbs[1] = "dislike";
+		verbs[2] = "am ambivalent about";
+		verbs[3] = "am thinking about";
+	}
+	
 	private void buildMovieList()
 	{
-		
+		movieList.add("Shrek");
+		movieList.add("Shrek 2");
+		movieList.add("Shrek 3");
+		movieList.add("Shrek 4");
+		movieList.add("The Bee Movie");
 	}
 	
 	private void buildShoppingList()
 	{
-		
+		shoppingList.add("snacks");
+		shoppingList.add("veggies");
+		shoppingList.add("protein");
+		shoppingList.add("fruits");
+		shoppingList.add("slug bait");
 	}
 	
 	private void buildCuteAnimals()
@@ -61,7 +81,16 @@ public class Chatbot
 	
 	public boolean lengthChecker(String input)
 	{
-		return false;
+		boolean validLength = false;
+		
+		if (input != null)		//if (input != null && input.length() > 2)
+		{
+			if (input.length() > 2)
+			{
+				validLength = true;
+			}
+		}
+		return validLength;
 	}
 	
 	public boolean htmlTagChecker(String input)
