@@ -30,8 +30,10 @@ public class Movie
 
 	public String getGenre()
 	{
-		this.genre = "@@@@@@@";
-		return genre;
+		if (this.genre = "");
+		{
+		return false;
+		}
 	}
 
 	public String getRatingMPAA()

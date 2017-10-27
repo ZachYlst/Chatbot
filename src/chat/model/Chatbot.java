@@ -24,18 +24,18 @@ public class Chatbot
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
-		this.questions = null;
+		this.questions = new String [10];
 		this.username = username;
 		this.content = null;
 		this.intro = null;
-		this.currentTime = null;
-		this.topics = null;
+		this.topics = new String [7];
 		this.verbs = new String [4];
-		this.followUps = null;
+		this.followUps = new String [5];
 		
 		buildVerbs();
 		buildShoppingList();
 		buildMovieList();
+		buildQuestions();
 	}
 
 	private void buildVerbs()
@@ -53,6 +53,7 @@ public class Chatbot
 		movieList.add("Shrek 3");
 		movieList.add("Shrek 4");
 		movieList.add("The Bee Movie");
+		movieList.add("The Emoji Movie");
 	}
 	
 	private void buildShoppingList()
@@ -62,6 +63,12 @@ public class Chatbot
 		shoppingList.add("protein");
 		shoppingList.add("fruits");
 		shoppingList.add("slug bait");
+		shoppingList.add("dairy");
+		shoppingList.add("corn");
+		shoppingList.add("peas");
+		shoppingList.add("cheese");
+		shoppingList.add("apples");
+		shoppingList.add("soup");
 	}
 	
 	private void buildCuteAnimals()
@@ -71,12 +78,30 @@ public class Chatbot
 	
 	private void buildQuestions()
 	{
-		
+		questions[0] = "What is your name?";
+		questions[1] = "How old are you?";
+		questions[2] = "Where do you live?";
+		questions[3] = "What do you like to do?";
+		questions[4] = "Do you have any pets?";
+		questions[5] = "Are you a boy or a girl?";
+		questions[6] = "How many siblings do you have?";
+		questions[7] = "What grade are you in?";
+		questions[8] = "What ethnicity are you?";
+		questions[9] = "What is your favorite movie?";
 	}
 	
-	public String processConversation(String input)
+	public boolean processConversation(String input)
 	{
-		return null;
+		boolean validConversationLength = false;
+		
+		if (input != null)
+		{
+			if (input.length() > 5)
+			{
+				validConversationLength = true;
+			}
+		}
+		return validConversationLength;
 	}
 	
 	public boolean lengthChecker(String input)
@@ -99,8 +124,9 @@ public class Chatbot
 	}
 	
 	public boolean userNameChecker(String input)
+	
 	{
-		return false;
+		if (input.length -1)
 	}
 	
 	public boolean contentChecker(String contentCheck)
@@ -155,7 +181,7 @@ public class Chatbot
 
 	public String [] getQuestions()
 	{
-		return null;
+		return questions;
 	}
 	
 	public String[] getVerbs()
