@@ -22,7 +22,7 @@ public class Chatbot
 	{
 		this.movieList = new ArrayList<String>();
 		this.shoppingList = new ArrayList<String>();
-		this.cuteAnimalMemes = null;
+		this.cuteAnimalMemes = new ArrayList<String>();
 		this.currentTime = null;
 		this.questions = new String [10];
 		this.username = username;
@@ -33,6 +33,7 @@ public class Chatbot
 		this.followUps = new String [5];
 		
 		buildVerbs();
+		buildTopics();
 		buildFollowups();
 		buildShoppingList();
 		buildMovieList();
@@ -72,6 +73,16 @@ public class Chatbot
 		shoppingList.add("soup");
 	}
 	
+	private void buildFollowups()
+	{
+		
+	}
+	
+	private void buildTopics()
+	{
+		
+	}
+	
 	private void buildCuteAnimals()
 	{
 		
@@ -95,6 +106,7 @@ public class Chatbot
 	{
 		String chatbotResponse = "";
 		chatbotResponse += "You said: " + "\n" + input + "\n";
+		
 		chatbotResponse += buildChatbotResponse();
 		
 		return chatbotResponse;
@@ -102,7 +114,16 @@ public class Chatbot
 	
 	private String buildChatbotResponse()
 	{
-		String response = "";
+		String response = "I ";
+		int random = (int) (Math.random() * verbs.length);
+		
+		response += verbs[random];
+		
+		random = (int) (Math.random() * topics.length);
+		response += " " + topics[random] + ".\n";
+		
+		random = (int) (Math.random() * questions.length);
+		response += questions[random];
 		
 		return response;
 	}
@@ -127,9 +148,31 @@ public class Chatbot
 	}
 	
 	public boolean userNameChecker(String input)
-	
 	{
-		if (input.length -1)
+		if (input.equals(""))
+		{
+			return false;
+		}
+		if (input != "@" + "")
+		{
+			return false;
+		}
+		if (input.contentEquals(null))
+		{
+			return false;
+		}
+		if (input.contains("@@"))
+		{
+			return false;
+		}
+		if (input.contains(".com"))
+		{
+			return false;
+		}
+		else
+		{
+		return true;
+		}
 	}
 	
 	public boolean contentChecker(String contentCheck)
@@ -159,12 +202,24 @@ public class Chatbot
 
 	public boolean quitChecker(String exitString)
 	{
+		if (exitString != null && exitString.equalsIgnoreCase("quit"))
+		{
+			return true;
+		}
 		return false;
 	}
 
 	public boolean keyboardMashChecker(String sample)
 	{
-		return false;
+		if (sample.equals("S.D.F."))
+		{
+			return false;
+		}
+		if (sample.equals("derf"))
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	public List<String> getMovieList()
