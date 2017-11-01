@@ -33,6 +33,7 @@ public class Chatbot
 		this.followUps = new String [5];
 		
 		buildVerbs();
+		buildFollowups();
 		buildShoppingList();
 		buildMovieList();
 		buildQuestions();
@@ -90,18 +91,20 @@ public class Chatbot
 		questions[9] = "What is your favorite movie?";
 	}
 	
-	public boolean processConversation(String input)
+	public String processConversation(String input)
 	{
-		boolean validConversationLength = false;
+		String chatbotResponse = "";
+		chatbotResponse += "You said: " + "\n" + input + "\n";
+		chatbotResponse += buildChatbotResponse();
 		
-		if (input != null)
-		{
-			if (input.length() > 5)
-			{
-				validConversationLength = true;
-			}
-		}
-		return validConversationLength;
+		return chatbotResponse;
+	}
+	
+	private String buildChatbotResponse()
+	{
+		String response = "";
+		
+		return response;
 	}
 	
 	public boolean lengthChecker(String input)
