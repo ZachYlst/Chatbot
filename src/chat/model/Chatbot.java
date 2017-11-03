@@ -85,7 +85,9 @@ public class Chatbot
 	
 	private void buildCuteAnimals()
 	{
-		
+		cuteAnimalMemes.add("otter");
+		cuteAnimalMemes.add("FLOOFER");
+		cuteAnimalMemes.add("kittie");
 	}
 	
 	private void buildQuestions()
@@ -182,22 +184,82 @@ public class Chatbot
 	
 	public boolean cuteAnimalMemeChecker(String input)
 	{
+		if (input.contains("pepe"))
+		{
+			return false;
+		}
+		if (input.contains("pupper"))
+		{
+			return true;
+		}
+		if (input.contains("otter"))
+		{
+			return true;
+		}
+		if (input.contains("kittie"))
+		{
+			return true;
+		}
+		
 		return false;
 	}
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		return false;
+		if (shoppingItem.contains("protein"))
+		{
+			return true;
+		}
+		if (shoppingItem.contains("slug bait"))
+		{
+			return false;
+		}
+		if (shoppingItem.contains("veggies"))
+		{
+			return true;
+		}
+		if (shoppingItem.contains("snacks"))
+		{
+			return true;
+		}
+		
+		return true;
 	}
 	
 	public boolean movieTitleChecker(String title)
 	{
-		return false;
+		if (title.contentEquals(""))
+		{
+			return false;
+		}
+		if (title.contains("Spiderman"))
+		{
+			return true;
+		}
+		if (title.contains("Hidden Figures"))
+		{
+			return true;
+		}
+		
+		return true;
 	}
 	
 	public boolean movieGenreChecker(String genre)
 	{
-		return false;
+		if (genre.contentEquals(""))
+		{
+			return false;
+		}
+		if (genre.contains("Documentary"))
+		{
+			return true;
+		}
+		if (genre.contains("Thriller"))
+		{
+			return true;
+		}
+		
+		return true;
 	}
 
 	public boolean quitChecker(String exitString)
