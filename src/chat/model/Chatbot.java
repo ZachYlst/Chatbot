@@ -206,7 +206,7 @@ public class Chatbot
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		if (shoppingItem.contains("protein"))
+		if (shoppingItem.contains("protein") | shoppingItem.contains("veggies") | shoppingItem.contains("snacks"))
 		{
 			return true;
 		}
@@ -214,14 +214,14 @@ public class Chatbot
 		{
 			return false;
 		}
-		if (shoppingItem.contains("veggies"))
-		{
-			return true;
-		}
-		if (shoppingItem.contains("snacks"))
-		{
-			return true;
-		}
+//		if (shoppingItem.contains("veggies"))
+//		{
+//			return true;
+//		}
+//		if (shoppingItem.contains("snacks"))
+//		{
+//			return true;
+//		}
 		
 		return true;
 	}

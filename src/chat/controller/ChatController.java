@@ -32,7 +32,7 @@ public class ChatController
 	
 	private String popupChat(String chat)
 	{
-		String chatbotSays = "";
+		String chatbotSays = "";		//assigns a valid value for the returned variable of the method
 		
 		chatbotSays += chatbot.processConversation(chat);
 		
