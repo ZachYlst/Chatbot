@@ -25,10 +25,10 @@ public class ChatController
 		}
 	}
 	
-	public String interactWithChatbot(String input)
-	{
-		
-	}
+//	public String interactWithChatbot(String input)
+//	{
+//		
+//	}
 	
 	private String popupChat(String chat)
 	{
