@@ -38,7 +38,7 @@ public class Movie
 
 	public String getRatingMPAA()
 	{
-		return null;
+		return ratingMPAA;
 	}
 
 	public String getReview()
@@ -48,7 +48,7 @@ public class Movie
 
 	public int getLength()
 	{
-		return -99;
+		return length;
 	}
 
 	public LocalDate getReleaseDate()
@@ -98,6 +98,10 @@ public class Movie
 	
 	public String toString()
 	{
-		return null;
+		if (("@").indexOf("@") >= 0)
+		{
+			return false;
+		}
+		return true;
 	}
 }

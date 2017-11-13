@@ -104,6 +104,11 @@ public class Chatbot
 		questions[9] = "What is your favorite movie?";
 	}
 	
+	/**
+	 * Takes the user's text input; processes and returns a string
+	 * @param input The user's supplied text
+	 * @return The combined user input and chatbot response
+	 */
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
@@ -114,6 +119,10 @@ public class Chatbot
 		return chatbotResponse;
 	}
 	
+	/**
+	 * Builds random responses using chatbot's sentence part arrays
+	 * @return The random chatbot response
+	 */
 	private String buildChatbotResponse()
 	{
 		String response = "I ";
@@ -126,6 +135,14 @@ public class Chatbot
 		
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
+		
+		random = (int) (Math.random() * 2);
+		
+		if (random % 2 == 0)
+		{
+		random = (int) (Math.random() * movieList.size());
+		response += "\n" + movieList.get(random).getTitle() + " is a great movie!";
+		}
 		
 		return response;
 	}
