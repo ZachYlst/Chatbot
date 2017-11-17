@@ -40,6 +40,9 @@ public class Chatbot
 		buildQuestions();
 	}
 
+	/**
+	 * Verbs the Chatbot can access to display feelings
+	 */
 	private void buildVerbs()
 	{
 		verbs[0] = "like";
@@ -48,6 +51,9 @@ public class Chatbot
 		verbs[3] = "am thinking about";
 	}
 	
+	/**
+	 * Movies the Chatbot actively recognizes
+	 */
 	private void buildMovieList()
 	{
 		movieList.add("Shrek");
@@ -58,6 +64,9 @@ public class Chatbot
 		movieList.add("The Emoji Movie");
 	}
 	
+	/**
+	 * Items the Chatbot recognizes as part of a shopping list
+	 */
 	private void buildShoppingList()
 	{
 		shoppingList.add("snacks");
@@ -90,6 +99,9 @@ public class Chatbot
 		cuteAnimalMemes.add("kittie");
 	}
 	
+	/**
+	 * Questions the Chatbot is given access to ask
+	 */
 	private void buildQuestions()
 	{
 		questions[0] = "What is your name?";
