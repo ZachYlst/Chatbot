@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 		private JTextField inputField;
 		private JTextArea chatArea;
 		private JTextField textField;
+		private JButton checkerButton;
+		private JScrollPane scrollPane;
 		
 		public ChatPanel(ChatController appController)
 		{
@@ -26,7 +28,17 @@ import javax.swing.JScrollPane;
 			this.appController = appController;
 			chatButton = new JButton("Chat");
 			appLayout = new SpringLayout();
-			
+			scrollPane = new JScrollPane();
+			appLayout.putConstraint(SpringLayout.NORTH, scrollPane, 25, SpringLayout.NORTH, this);
+			appLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -29, SpringLayout.NORTH, chatButton);
+			appLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, chatButton);
+			textField = new JTextField();
+			appLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, textField);
+			appLayout.putConstraint(SpringLayout.WEST, textField, 25, SpringLayout.WEST, this);
+			appLayout.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, chatButton);
+			appLayout.putConstraint(SpringLayout.EAST, textField, -14, SpringLayout.WEST, chatButton);
+			appLayout.putConstraint(SpringLayout.WEST, chatButton, 350, SpringLayout.WEST, this);
+			appLayout.putConstraint(SpringLayout.SOUTH, chatButton, -24, SpringLayout.SOUTH, this);
 			
 			setupPanel();
 			setupLayout();
@@ -38,22 +50,8 @@ import javax.swing.JScrollPane;
 			this.setBackground(Color.ORANGE);
 			this.setLayout(appLayout);
 			this.add(chatButton);
-			
-			textField = new JTextField();
-			appLayout.putConstraint(SpringLayout.WEST, textField, 24, SpringLayout.WEST, this);
-			appLayout.putConstraint(SpringLayout.EAST, textField, -124, SpringLayout.EAST, this);
-			appLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, textField);
-			appLayout.putConstraint(SpringLayout.WEST, chatButton, 24, SpringLayout.EAST, textField);
-			appLayout.putConstraint(SpringLayout.SOUTH, textField, -27, SpringLayout.SOUTH, this);
-			add(textField);
-			textField.setColumns(10);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			appLayout.putConstraint(SpringLayout.NORTH, scrollPane, 22, SpringLayout.NORTH, this);
-			appLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, textField);
-			appLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 221, SpringLayout.NORTH, this);
-			appLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, chatButton);
-			add(scrollPane);
+			this.add(textField);
+			this.add(scrollPane);
 		}
 		
 		private void setupLayout()
@@ -69,6 +67,17 @@ import javax.swing.JScrollPane;
 				{
 					String userText = inputField.getText();
 					String displayText = appController.interactWithChatbot(userText);
+					chatArea.append(displayText);
+					inputField.setText("");
+				}
+			});
+			
+			checkerButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{
+					String userText = inputField.getText();
+					String displayText = appController.useCheckers(userText);
 					chatArea.append(displayText);
 					inputField.setText("");
 				}
