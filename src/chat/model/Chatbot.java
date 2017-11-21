@@ -4,6 +4,11 @@ import java.util.List;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * The knowledge of the Chatbot
+ * @author Zachary Ylst
+ * @version 11/21/17
+ */
 public class Chatbot
 {
 	private List<String> movieList;
