@@ -13,7 +13,7 @@ public class ChatController
 	
 	public ChatController()
 	{
-		chatbot = new Chatbot("Zachary Ylst");
+		chatbot = new Chatbot("Sanic");
 		display = new PopupDisplay();
 	}
 	
