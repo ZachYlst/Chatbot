@@ -21,19 +21,23 @@ import javax.swing.JLabel;
 		private JTextArea chatArea;
 		private JTextField textField;
 		private JButton checkerButton;
-		private JScrollPane scrollPane;
+		private JScrollPane chatScrollPane;
 		private JLabel infoLabel;
 		
 		public ChatPanel(ChatController appController)
 		{
 			super();
 			this.appController = appController;
+			
 			chatButton = new JButton("Chat");
 			appLayout = new SpringLayout();
-			scrollPane = new JScrollPane();
+			chatArea = new JTextArea(10, 25);
+			chatScrollPane = new JScrollPane();
 			infoLabel = new JLabel("Type to chat with the Chatbot");
-			textField = new JTextField();
+			textField = new JTextField(20);
+			checkerButton = new JButton("Check contents");
 			
+			setupScrollPane();
 			setupPanel();
 			setupLayout();
 			setupListeners();
@@ -45,19 +49,28 @@ import javax.swing.JLabel;
 			this.setLayout(appLayout);
 			this.add(chatButton);
 			this.add(textField);
-			this.add(scrollPane);
+			this.add(chatScrollPane);
 			this.add(infoLabel);
+			chatArea.setEnabled(false);
+			chatArea.setEditable(false);
+		}
+		
+		private void setupScrollPane()
+		{
+			chatScrollPane.setViewportView(chatArea);
+			chatScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			chatScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		}
 		
 		private void setupLayout()
 		{
-			appLayout.putConstraint(SpringLayout.NORTH, scrollPane, 25, SpringLayout.NORTH, this);
-			appLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -29, SpringLayout.NORTH, chatButton);
-			appLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, chatButton);
+			appLayout.putConstraint(SpringLayout.NORTH, chatScrollPane, 25, SpringLayout.NORTH, this);
+			appLayout.putConstraint(SpringLayout.SOUTH, chatScrollPane, -29, SpringLayout.NORTH, chatButton);
+			appLayout.putConstraint(SpringLayout.EAST, chatScrollPane, 0, SpringLayout.EAST, chatButton);
 			
 			appLayout.putConstraint(SpringLayout.WEST, infoLabel, 0, SpringLayout.WEST, textField);
 			appLayout.putConstraint(SpringLayout.SOUTH, infoLabel, -6, SpringLayout.NORTH, textField);
-			appLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, textField);
+			appLayout.putConstraint(SpringLayout.WEST, chatScrollPane, 0, SpringLayout.WEST, textField);
 			appLayout.putConstraint(SpringLayout.WEST, textField, 25, SpringLayout.WEST, this);
 			appLayout.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, chatButton);
 			appLayout.putConstraint(SpringLayout.EAST, textField, -14, SpringLayout.WEST, chatButton);
