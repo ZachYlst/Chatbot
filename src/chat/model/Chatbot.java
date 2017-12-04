@@ -198,15 +198,35 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		if (input.contains("<>") | input.contains("< >") | input.contains("<B> ") | input.contains("<A HREF> </a>"))
+		boolean containsHTML = false;
+		if (input == null || !input.contains("<"))
 		{
-			return false;
+			return containsHTML;
 		}
-		if (input.contains("<B> </B>") | input.contains("<I> sdadas </i>") | input.contains("<P>") | input.contains("<A HREF=\"sdfs.html\" </a>"))
+		int firstOpen = input.indexOf("<");
+		int firstClose = input.indexOf(">",firstOpen);
+		int secondOpen = -9;
+		int secondClose = -9;
+		String tagText = "";
+		
+		//Check bad tags
+		if (input.contains("<>") || input.indexOf("< >") > -1)
 		{
-			return true;
+			containsHTML = false;
 		}
-		return true;
+		//Check singleton
+		if (input.toUpperCase().contains("<P>") || input.toLowerCase().contains("<br>"))
+		{
+			containsHTML = true;
+		}
+		//Check others
+		else if (firstClose > firstOpen)
+		{
+			//Others
+			tagText = input.substring(firstOpen + 1, firstClose).toLowerCase();
+			secondOpen = input.toLowerCase().indexOf("</" + tagText, firstClose);
+		}
+		
 	}
 	
 	public boolean userNameChecker(String input)
