@@ -15,6 +15,7 @@ public class ChatController
 	{
 		chatbot = new Chatbot("Sanic");
 		display = new PopupDisplay();
+		appFrame = new ChatFrame(this);
 	}
 	
 	public void start()

@@ -13,9 +13,9 @@ public class Chatbot
 {
 	private List<String> movieList;
 	private List<String> shoppingList;
-	private List<String> cuteAnimalMemes;
+	private String[] cute;
 	private String [] verbs;
-	private String [] topics;
+	private List<String> topics;
 	private String [] followUps;
 	private String [] questions;
 	private String username;
@@ -27,13 +27,13 @@ public class Chatbot
 	{
 		this.movieList = new ArrayList<String>();
 		this.shoppingList = new ArrayList<String>();
-		this.cuteAnimalMemes = new ArrayList<String>();
-		this.currentTime = null;
+		this.cute = new String [3];
+		this.currentTime = LocalTime.now();
 		this.questions = new String [10];
 		this.username = username;
 		this.content = null;
 		this.intro = null;
-		this.topics = new String [7];
+		this.topics = new ArrayList<String>();
 		this.verbs = new String [4];
 		this.followUps = new String [5];
 		
@@ -52,8 +52,8 @@ public class Chatbot
 	{
 		verbs[0] = "like";
 		verbs[1] = "dislike";
-		verbs[2] = "am ambivalent about";
-		verbs[3] = "am thinking about";
+		verbs[2] = "am neutral about";
+		verbs[3] = "am in love with";
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Chatbot
 		movieList.add("Shrek");
 		movieList.add("Shrek 2");
 		movieList.add("Shrek 3");
-		movieList.add("Shrek 4");
+		movieList.add("Veggie Tales");
 		movieList.add("The Bee Movie");
 		movieList.add("The Emoji Movie");
 	}
@@ -89,19 +89,45 @@ public class Chatbot
 	
 	private void buildFollowups()
 	{
-		
+		followUps[0] = "(got2goFast)";
 	}
 	
 	private void buildTopics()
 	{
-		
+		topics.add("school");
+		topics.add("family");
+		topics.add("friends");
+		topics.add("doing things");
+		topics.add("sports");
+		topics.add("love");
+		topics.add("death");
+		topics.add("movies");
+		topics.add("video games");
+		topics.add("satanic rituals");
 	}
 	
 	private void buildCuteAnimals()
 	{
-		cuteAnimalMemes.add("otter");
-		cuteAnimalMemes.add("FLOOFER");
-		cuteAnimalMemes.add("kittie");
+		cute[0] = ("otter");
+		cute[1] = ("FLOOFER");
+		cute[2] = ("kittie");
+		
+		int otterCount = 1;
+		int flooferCount = 2;
+		int kittieCount = 4;
+		
+		if (cute[0 | 1 | 2].contains("otter"))
+		{
+			otterCount += 1;
+		}
+		if (cute[0 | 1 | 2].contains("FLOOFER"))
+		{
+			flooferCount += 1;
+		}
+		if (cute[0 | 1 | 2].contains("kittie"))
+		{
+			kittieCount += 1;
+		}
 	}
 	
 	/**
@@ -129,6 +155,7 @@ public class Chatbot
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
+		chatbotResponse += currentTime.getHour() + ":" + currentTime.getMinute() + " ";
 		chatbotResponse += "You said: " + "\n" + input + "\n";
 		
 		chatbotResponse += buildChatbotResponse();
@@ -147,8 +174,8 @@ public class Chatbot
 		
 		response += verbs[random];
 		
-		random = (int) (Math.random() * topics.length);
-		response += " " + topics[random] + ".\n";
+		random = (int) (Math.random() * topics.size());
+		response += " " + topics.get(random) + ".\n";
 		
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
@@ -162,22 +189,23 @@ public class Chatbot
 		}
 		
 		int followup = (int) (Math.random() * 5);
+		response += "\n" + followUps[0] + "\n\n";
 		
-		switch (followup)
-		{
-		case 0:
-			response += followUps[0] + "\n";
-			break;
-		case 3:
-			response += followUps[1] + "\n";
-		case 1:
-			response += followUps[2] + "\n";
-			break;
-		default:
-			response += followUps[4] + "\n";
-			response += followUps[3] + "\n";
-			break;
-		}
+//		switch (followup)
+//		{
+//		case 0:
+//			response += "\n" + followUps[0] + "\n";
+//			break;
+//		case 3:
+//			response += "\n" + followUps[1] + "\n";
+//		case 1:
+//			response += "\n" + followUps[2] + "\n";
+//			break;
+//		default:
+//			response += "\n" + followUps[4] + "\n";
+//			response += "\n" + followUps[3] + "\n";
+//			break;
+//		}
 		
 		return response;
 	}
@@ -226,7 +254,7 @@ public class Chatbot
 			tagText = input.substring(firstOpen + 1, firstClose).toLowerCase();
 			secondOpen = input.toLowerCase().indexOf("</" + tagText, firstClose);
 		}
-		
+		return true;
 	}
 	
 	public boolean userNameChecker(String input)
@@ -371,12 +399,12 @@ public class Chatbot
 		return shoppingList;
 	}
 	
-	public List<String> getCuteAnimalMemes()
+	public String[] getCuteAnimalMemes()
 	{
-		return cuteAnimalMemes;
+		return cute;
 	}
 
-	public String [] getQuestions()
+	public String[] getQuestions()
 	{
 		return questions;
 	}
@@ -386,7 +414,7 @@ public class Chatbot
 		return verbs;
 	}
 
-	public String[] getTopics()
+	public List<String> getTopics()
 	{
 		return topics;
 	}
