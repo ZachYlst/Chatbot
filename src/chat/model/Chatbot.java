@@ -13,7 +13,7 @@ public class Chatbot
 {
 	private List<String> movieList;
 	private List<String> shoppingList;
-	private String[] cute;
+	private String [] cute;
 	private String [] verbs;
 	private List<String> topics;
 	private String [] followUps;
@@ -87,11 +87,17 @@ public class Chatbot
 		shoppingList.add("soup");
 	}
 	
+	/**
+	 * Phrases the Chatbot can use to follow up responses
+	 */
 	private void buildFollowups()
 	{
 		followUps[0] = "(got2goFast)";
 	}
 	
+	/**
+	 * Topics the Chatbot can access to talk about
+	 */
 	private void buildTopics()
 	{
 		topics.add("school");
@@ -106,6 +112,9 @@ public class Chatbot
 		topics.add("satanic rituals");
 	}
 	
+	/**
+	 * List of animals that are used in cute animal memes
+	 */
 	private void buildCuteAnimals()
 	{
 		cute[0] = ("otter");
@@ -120,6 +129,7 @@ public class Chatbot
 		{
 			otterCount += 1;
 		}
+		
 		if (cute[0 | 1 | 2].contains("FLOOFER"))
 		{
 			flooferCount += 1;
@@ -210,6 +220,7 @@ public class Chatbot
 		return response;
 	}
 	
+	//Makes sure Chatbot follows certain parameters for each method
 	public boolean lengthChecker(String input)
 	{
 		boolean validLength = false;
@@ -389,6 +400,7 @@ public class Chatbot
 		return true;
 	}
 	
+	//Gives the Chatbot access to various methods/Arrays
 	public List<String> getMovieList()
 	{
 		return movieList;

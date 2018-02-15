@@ -13,6 +13,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+	/**
+	 * The GUI (interface) for Chatbot
+	 * @author Zachary Ylst
+	 * @version 12/8/17
+	 */
 	public class ChatPanel extends JPanel
 	{
 		private ChatController appController;
@@ -24,6 +29,10 @@ import javax.swing.ImageIcon;
 		private JScrollPane chatScrollPane;
 		private JLabel infoLabel;
 		
+		/**
+		 * Creates/establishes the panel used to chat with Chatbot
+		 * @param appController
+		 */
 		public ChatPanel(ChatController appController)
 		{
 			super();
@@ -54,6 +63,9 @@ import javax.swing.ImageIcon;
 			changeBackgroundColor();
 		}
 		
+		/**
+		 * Adds various components to the Chatbot panel
+		 */
 		private void setupPanel()
 		{
 			this.setBackground(Color.ORANGE);
@@ -72,12 +84,18 @@ import javax.swing.ImageIcon;
 			add(lblNewLabel);
 		}
 		
+		/**
+		 * Sets up the text field Chatbot uses to communicate
+		 */
 		private void setupScrollPane()
 		{
 			chatScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			chatScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		}
 		
+		/**
+		 * Sets up the ScrollPane and button within the panel
+		 */
 		private void setupLayout()
 		{
 			appLayout.putConstraint(SpringLayout.NORTH, chatScrollPane, 25, SpringLayout.NORTH, this);
@@ -86,6 +104,9 @@ import javax.swing.ImageIcon;
 			appLayout.putConstraint(SpringLayout.SOUTH, chatButton, -24, SpringLayout.SOUTH, this);
 		}
 		
+		/**
+		 * "Listens" for an action, then acts upon it
+		 */
 		private void setupListeners()
 		{
 			chatButton.addActionListener(new ActionListener()
@@ -111,6 +132,9 @@ import javax.swing.ImageIcon;
 			});
 		}	
 		
+		/**
+		 * Changes the background color of the panel 
+		 */
 		private void changeBackgroundColor()
 		{
 			int red = (int) (Math.random() * 256);
