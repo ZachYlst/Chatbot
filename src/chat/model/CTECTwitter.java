@@ -1,17 +1,36 @@
 package chat.model;
 
+import chat.controller.ChatbotController;
+
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.Twitter;
+import twitter4j.Status;
+
 public class CTECTwitter
 {
-	public void handleErrors(Exception error)
+	private ChatbotController appController;
+	private Twitter chatbotTwitter;
+	
+	public CTECTwitter(ChatbotController appController)
 	{
-		display.displayText(error.getMessage());
+		this.appController = appController;
+		this.chatbotTwitter = TwitterFactory.getSingleton();
 	}
 	
-	public void sendTweet(String tweet)
+	public void sendTweet(String textToTweet)
 	{
-		if (tweet.length() < 280)
+		try
 		{
-			
+			chatbotTwitter.updateStatus(textToTweet + " @ChatbotCTEC");
+		}
+		catch(TwitterException tweetError)
+		{
+			appController.handleErrors(tweetError);
+		}
+		catch(Exception otherError)
+		{
+			appController.handleErrors(otherError);
 		}
 	}
 }

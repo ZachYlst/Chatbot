@@ -10,7 +10,7 @@ import chat.view.ChatPanel;
  * @author Zachary Ylst
  * @version 12/8/17
  */
-public class ChatController
+public class ChatbotController
 {
 	private Chatbot chatbot;
 	private PopupDisplay display;
@@ -19,7 +19,7 @@ public class ChatController
 	/**
 	 * Calls to the PopupDisplay and ChatFrame
 	 */
-	public ChatController()
+	public ChatbotController()
 	{
 		chatbot = new Chatbot("Sanic");
 		display = new PopupDisplay();
@@ -52,6 +52,26 @@ public class ChatController
 		chatbotSays += chatbot.processConversation(chat);
 		
 		return chatbotSays;
+	}
+	
+	public Chatbot getChatbot()
+	{
+		return chatbot;
+	}
+	
+	public PopupDisplay getDisplay()
+	{
+		return display;
+	}
+	
+	public ChatFrame getChatFrame()
+	{
+		return appFrame;
+	}
+	
+	public void handleErrors(Exception error)
+	{
+		display.displayText(error.getMessage());
 	}
 	
 	/**
