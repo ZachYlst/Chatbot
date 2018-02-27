@@ -4,6 +4,7 @@ import chat.model.Chatbot;
 import chat.view.PopupDisplay;
 import chat.view.ChatFrame;
 import chat.view.ChatPanel;
+import chat.model.CTECTwitter;
 
 /**
  * The control center of Chatbot
@@ -15,6 +16,7 @@ public class ChatbotController
 	private Chatbot chatbot;
 	private PopupDisplay display;
 	private ChatFrame appFrame;
+	private CTECTwitter myTwitter;
 	
 	/**
 	 * Calls to the PopupDisplay and ChatFrame
@@ -22,6 +24,7 @@ public class ChatbotController
 	public ChatbotController()
 	{
 		chatbot = new Chatbot("Sanic");
+		myTwitter = new CTECTwitter(this);
 		display = new PopupDisplay();
 		appFrame = new ChatFrame(this);
 	}
@@ -31,13 +34,8 @@ public class ChatbotController
 	 */
 	public void start()
 	{
-		display.displayText("Welcome to Chatbot!");
-		
-//		while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response))
-//		{
-//			response = popupChat(response);
-//			response = display.collectResponse(response);
-//		}
+		String results = IOController.loadFromFile(this, "commonWords.txt");
+		IOController.saveToFile(this, results, "rea");
 	}
 
 	/**
@@ -72,6 +70,11 @@ public class ChatbotController
 	public void handleErrors(Exception error)
 	{
 		display.displayText(error.getMessage());
+	}
+	
+	public void tweet(String text)
+	{
+		myTwitter.sendTweet(text);
 	}
 	
 	/**
