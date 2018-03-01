@@ -77,6 +77,11 @@ public class ChatbotController
 		myTwitter.sendTweet(text);
 	}
 	
+	public String search(String text)
+	{
+		return myTwitter.getMostCommonWord(text);
+	}
+	
 	/**
 	 * Allows you to interact (talk) with the Chatbot
 	 * @param input
